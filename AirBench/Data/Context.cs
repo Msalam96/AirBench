@@ -13,7 +13,10 @@ namespace AirBench.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            
+            modelBuilder.Entity<Review>()
+                .HasRequired(r => r.Poster)
+                .WithMany()
+                .WillCascadeOnDelete(false);
         }
     }
 

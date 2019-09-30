@@ -12,5 +12,8 @@ namespace AirBench.Models
 
         public int BenchId { get; set; }
         public Bench Bench { get; set; }
+
+        public int PosterId { get; set; }
+        public User Poster { get; set; }
     }
 }

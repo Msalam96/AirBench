@@ -22,5 +22,8 @@ namespace AirBench.Models
         public string UserName { get; set; }
         [Required, MaxLength(255)]
         public string HashedPassword { get; set; }
+
+        public List<Bench> Benches { get; set; }
+        public List<Review> Reviews { get; set; }
     }
 }
