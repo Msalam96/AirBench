@@ -64,7 +64,7 @@
 
 ### [Database Plan](https://docs.google.com/spreadsheets/d/1iX1f1VaYwixBIW7q5J9tAa5q1VNhhyTuCKVWLF_RIdc/edit?usp=sharing) 
 
-### Tentative Schedule
+### Tentative Schedule For 9/30/2019
 1. Setup VS project, add packages from NuGet
 2. Setup Database
 3. Setup Entity Frame Work
