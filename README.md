@@ -16,7 +16,7 @@
   - Logout when Logged in
   - My Benches (Benches user added)
   - My Reviews??? (Reviews user has posted)
-#### Home Page - Home Controller / Index View
+#### Home Page - Home Controller / Index View (Mix of MVC and Json (For the Map))
   - No Autorization needed to view
   - Show overview of Map with all benches (using a Map API most likely // each benchmark is clickable)
   - Sidebar
@@ -25,11 +25,11 @@
       - Each bench is given their own div, displays a picture with their rating and description
       - Loads all benches from bench table
    - Add bench to map (Autorization required)
-#### Sign-up Page -- Account Controller
+#### Sign-up Page -- Account Controller (MVC)
   - User signs up with their Username and Password
   - Save to database
   - Redirect to Log-in Page
-#### Log-in Page -- Account Controller
+#### Log-in Page -- Account Controller (MVC)
   - User logins with their Username and Password
   - Search criteria to database
   - Redirect to Home Page
