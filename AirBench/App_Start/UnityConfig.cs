@@ -12,10 +12,8 @@ namespace AirBench
         public static void RegisterComponents()
         {
             var container = new UnityContainer();
-
       // e.g. container.RegisterType<ITestService, TestService>();
-
-      DependencyResolver.SetResolver(new Mvc5Resolver(container));
+            DependencyResolver.SetResolver(new Mvc5Resolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new ApiResolver(container);
         }
     }
