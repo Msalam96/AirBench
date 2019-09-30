@@ -40,7 +40,7 @@
     - Description
     - Number of Seats
     - Lat / Long will already be saved depending on where user clicked
-    - Add image
+    - Add image (Url Most likely)
   - Add/Cancel
   - Adds to bench table if successful 
 #### Bench Details Page -- Bench Controller / Index??? /// Edit(or Details) View
