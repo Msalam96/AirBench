@@ -43,7 +43,7 @@
     - Add image (Url Most likely)
   - Add/Cancel
   - Adds to bench table if successful 
-#### Bench Details Page -- Bench Controller / Index??? /// Edit(or Details) View
+#### Bench Details Page -- Bench Controller / Index??? /// Edit(or Details) View - GET 
   - No Authorization Required
   - Redirected when user clicks on benchmark in home page or clicks on bench in Side Bar
   - Loads specific bench from bench database
