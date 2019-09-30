@@ -8,6 +8,7 @@
   - Insomnia??
   - MSSMS
   - Entity Framework
+  - Bootstrap
 ### Pages
 #### Nav-Bar
   - Contains a link to a login page
@@ -61,5 +62,10 @@
     - Submit / Cancel
     - Add to review table and probably review - bench bridge table
 
-### [Database](https://docs.google.com/spreadsheets/d/1iX1f1VaYwixBIW7q5J9tAa5q1VNhhyTuCKVWLF_RIdc/edit?usp=sharing) 
+### [Database Plan](https://docs.google.com/spreadsheets/d/1iX1f1VaYwixBIW7q5J9tAa5q1VNhhyTuCKVWLF_RIdc/edit?usp=sharing) 
 
+Tentative Schedule
+1. Setup VS project, add packages from NuGet
+2. Setup Database
+3. Setup Entity Frame Work
+4. Create Model Classes
