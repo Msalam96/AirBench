@@ -32,7 +32,7 @@
   - Click on map to add bench on that specific location
   - Add Form
     - Description
-    - # of Seats
+    - Number of Seats
     - Lat / Long will already be saved depending on where user clicked
     - Add image
   - Add/ Cancel
