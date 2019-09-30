@@ -27,13 +27,23 @@
   - User logins with their Username and Password
   - Search criteria to database
   - Redirect to Home Page
+#### Add Bench Page
+  - Authorization Required
+  - Click on map to add bench on that specific location
+  - Add Form
+    - Description
+    - # of Seats
+    - Lat / Long will already be saved depending on where user clicked
+    - Add image
+  - Add/ Cancel
 #### Bench Details Page
+  - No Authorization Required
   - Redirected when user clicks on benchmark in home page or clicks on bench in Side Bar
   - Display image at the top
   - Display Rating, Description, # of Seats, Latitude and Logitude of bench in list format
   - Display all reviews
   - Add review button (Must be signed in)
-  - #### Add Review 
+  - *Add Review* 
     - Not a seperate page, but only viewable when user is signed in and presses add review
     - User presses number of stars out of 5 to determine rating
     - Textbox for review
