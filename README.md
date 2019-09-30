@@ -33,7 +33,7 @@
   - Display Rating, Description, # of Seats, Latitude and Logitude of bench in list format
   - Display all reviews
   - Add review button (Must be signed in)
-  - Add Review 
+  - #### Add Review 
     - Not a seperate page, but only viewable when user is signed in and presses add review
     - User presses number of stars out of 5 to determine rating
     - Textbox for review
