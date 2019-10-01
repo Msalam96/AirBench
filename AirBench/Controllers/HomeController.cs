@@ -22,9 +22,9 @@ namespace AirBench.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var repository = new UserRepository(context);
-            IList<User> users = repository.GetUsers();
-            return View(users);
+            var repository = new BenchRepository(context);
+            IList<Bench> benches = repository.GetBenches();
+            return View(benches);
         }
     }
 }

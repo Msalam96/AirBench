@@ -1,4 +1,4 @@
-﻿@model IList<AirBench.Models.User>
+﻿@model IList<AirBench.Models.Bench>
 
 @{
     ViewBag.Title = "Index";
@@ -8,16 +8,20 @@
 
 <table>
     <tr>
-        <th>UserName</th>
-        <th>Password</th>
+        <th>Bench No.</th>
+        <th>Rating</th>
+        <th>Description</th>
+        <th>Poster</th>
     </tr>
     
     <tbody>
-        @foreach (var user in Model)
+        @foreach (var bench in Model)
         {
             <tr>
-                <td>@user.UserName</td>
-                <td>@user.HashedPassword</td>
+                <td>@bench.Id</td>
+                <td>@bench.Rating</td>
+                <td>@bench.Description</td>
+                <td>@bench.Poster.UserName</td>
             </tr>
         }
     </tbody>

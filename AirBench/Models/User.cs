@@ -8,7 +8,10 @@ namespace AirBench.Models
 {
     public class User
     {
-        public User() { }
+        public User() {
+            Benches = new List<Bench>();
+            Reviews = new List<Review>();
+        }
 
         public User(int id, string userName, string hashedPassword)
         {
@@ -24,6 +27,6 @@ namespace AirBench.Models
         public string HashedPassword { get; set; }
 
         public List<Bench> Benches { get; set; }
-        public List<Review> Reviews { get; set; }
+        public virtual List<Review> Reviews { get; set; }
     }
 }
