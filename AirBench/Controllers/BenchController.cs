@@ -37,6 +37,7 @@ namespace AirBench.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CreateBench bench)
         {
             BenchRepository benchRepository = new BenchRepository(context);
