@@ -1,9 +1,7 @@
 ﻿using AirBench.Data;
 using AirBench.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace AirBench.Repositories
 {
@@ -19,6 +17,12 @@ namespace AirBench.Repositories
         public List<User> GetUsers()
         {
             return _context.Users.ToList();
+        }
+
+        public User GetLoggedInUser(string userName)
+        {
+            return _context.Users
+                .SingleOrDefault(u => u.UserName == userName);
         }
     }
 }
