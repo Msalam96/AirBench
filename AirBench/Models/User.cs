@@ -19,7 +19,7 @@ namespace AirBench.Models
             UserName = userName;
             HashedPassword = hashedPassword;
         }
-
+  
         public int Id { get; set; }
         [Required, MaxLength(255)]
         public string UserName { get; set; }

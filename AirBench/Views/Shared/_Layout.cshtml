@@ -21,6 +21,16 @@
                     @Html.ActionLink("Register", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })
                 </li>
             </ul>
+            @if (Request.IsAuthenticated)
+            {
+                <div class="navbar-text navbar-right">
+                    @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { style = "display: inline" }))
+                    {
+                        <button class="btn btn-danger btn-sm" type="submit">Logout</button>
+                    }
+                </div>
+            }
+            
         </div>
     </nav>
 

@@ -23,7 +23,10 @@ namespace AirBench.Controllers
             if (Request.IsAuthenticated)
             {
                 User currentUser = new UserRepository(context).GetLoggedInUser(User.Identity.Name);
-                ViewBag.Name = currentUser.UserName;
+                if(currentUser != null)
+                {
+                    ViewBag.Name = currentUser.UserName;
+                }
             }
             var repository = new BenchRepository(context);
             IList<Bench> benches = repository.GetBenches();
