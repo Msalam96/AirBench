@@ -27,6 +27,6 @@ namespace AirBench.Models
         public string HashedPassword { get; set; }
 
         public List<Bench> Benches { get; set; }
-        public virtual List<Review> Reviews { get; set; }
+        public List<Review> Reviews { get; set; }
     }
 }
