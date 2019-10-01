@@ -1,5 +1,9 @@
 ﻿@model IList<AirBench.Models.Bench>
 
+@if (Request.IsAuthenticated)
+{
+    <h2>Welcome to AirBench @ViewBag.Name</h2>
+}
 @{
     ViewBag.Title = "Index";
 }
