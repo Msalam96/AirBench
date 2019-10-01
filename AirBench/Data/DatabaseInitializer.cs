@@ -26,6 +26,13 @@ namespace AirBench.Data
             review.BenchId = bench.Id;
             context.Reviews.Add(review);
 
+            Review review2 = new Review(0, (decimal)1.1, "I hate it");
+            review2.Poster = user;
+            review2.PosterId = user.Id;
+            review2.Bench = bench;
+            review2.BenchId = bench.Id;
+            context.Reviews.Add(review2);
+
             context.SaveChanges();
             
         }

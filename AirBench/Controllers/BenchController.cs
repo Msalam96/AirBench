@@ -10,7 +10,6 @@ using System.Web.Mvc;
 
 namespace AirBench.Controllers
 {
-    [Authorize]
     public class BenchController : Controller
     {
         // GET: Bench
@@ -28,6 +27,7 @@ namespace AirBench.Controllers
             return View(bench);
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Create()
         {
@@ -35,6 +35,7 @@ namespace AirBench.Controllers
             return View(bench);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Create(CreateBench bench)
         {
