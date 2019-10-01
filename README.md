@@ -64,8 +64,13 @@
 
 ### [Database Plan](https://docs.google.com/spreadsheets/d/1iX1f1VaYwixBIW7q5J9tAa5q1VNhhyTuCKVWLF_RIdc/edit?usp=sharing) 
 
-### Tentative Schedule For 9/30/2019
-1. Setup VS project, add packages from NuGet
-2. Setup Database
-3. Setup Entity Frame Work
-4. Create Model Classes
+### Schedule For 9/30/2019
+- [X] Setup VS project, add packages from NuGet
+- [X] Setup Database
+- [X] Setup Entity Frame Work
+- [X] Create Model Classes
+
+### Schedule for 10/1/2019
+- [ ] Create Login Page
+- [ ] Create Signup Page
+- [ ] Setup Authentication
