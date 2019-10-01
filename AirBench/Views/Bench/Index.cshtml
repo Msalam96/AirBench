@@ -1,0 +1,54 @@
+﻿@model AirBench.Models.Bench
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@Model.Id</h2>
+
+<table>
+    <tr>
+        <th>Bench No.</th>
+        <th>Rating</th>
+        <th>Description</th>
+        <th>Seats</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Poster</th>
+        <th></th>
+    </tr>
+
+    <tbody>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.Rating</td>
+            <td>@Model.Description</td>
+            <td>@Model.Seats</td>
+            <td>@Model.Latitude</td>
+            <td>@Model.Longitude</td>
+            <td>@Model.Poster.UserName</td>
+        </tr>  
+    </tbody>
+</table>
+
+<h3>Reviews</h3>
+
+<table>
+    <tr>
+        <th>Rating</th>
+        <th>Description</th>
+        <th>Poster</th>
+    </tr>
+
+    <tbody>
+    @foreach (var review in Model.Reviews)
+    {
+        <tr>
+            <td>@review.Rating</td>
+            <td>@review.Description</td>
+            <td>@review.Poster.UserName</td>
+        </tr>
+    }
+</tbody>
+
+</table>

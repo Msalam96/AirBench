@@ -21,9 +21,11 @@ namespace AirBench.Controllers
             context = new Context();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            var repository = new BenchRepository(context);
+            Bench bench = repository.GetBenchById(id);
+            return View(bench);
         }
 
         [HttpGet]

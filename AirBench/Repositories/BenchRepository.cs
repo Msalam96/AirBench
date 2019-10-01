@@ -22,6 +22,14 @@ namespace AirBench.Repositories
                 .ToList();
         }
 
+        public Bench GetBenchById(int id)
+        {
+            return _context.Benches
+                .Include(b => b.Poster)
+                .Include(b => b.Reviews)
+                .SingleOrDefault(b => b.Id == id);
+        }
+
         public void Insert(Bench bench)
         {
             _context.Benches.Add(bench);

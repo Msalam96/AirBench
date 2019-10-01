@@ -19,6 +19,13 @@ namespace AirBench.Data
             bench.Poster = user;
             context.Benches.Add(bench);
 
+            Review review = new Review(0, (decimal)4.5, "I love it");
+            review.Poster = user;
+            review.PosterId = user.Id;
+            review.Bench = bench;
+            review.BenchId = bench.Id;
+            context.Reviews.Add(review);
+
             context.SaveChanges();
             
         }
