@@ -16,6 +16,7 @@
         <th>Rating</th>
         <th>Description</th>
         <th>Poster</th>
+        <th></th>
     </tr>
     
     <tbody>
@@ -26,8 +27,12 @@
                 <td>@bench.Rating</td>
                 <td>@bench.Description</td>
                 <td>@bench.Poster.UserName</td>
+                <td>
+                    @Html.ActionLink("Details", "Index", "Bench", new { id = bench.Id }, null)
+                </td>
             </tr>
         }
     </tbody>
 </table>
 
+@Html.ActionLink("Add a Bench", "Create", "Bench", null, new { @class = "btn btn-info" })

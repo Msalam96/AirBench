@@ -21,5 +21,11 @@ namespace AirBench.Repositories
                 .Include(b => b.Poster)
                 .ToList();
         }
+
+        public void Insert(Bench bench)
+        {
+            _context.Benches.Add(bench);
+            _context.SaveChanges();
+        }
     }
 }
