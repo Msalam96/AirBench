@@ -49,6 +49,7 @@
             <td>@review.Poster.UserName</td>
         </tr>
     }
-</tbody>
-
+    </tbody>
 </table>
+
+@Html.ActionLink("Leave a review", "Create", "Review", new { id = Model.Id }, new { @class = "btn btn-info" })
