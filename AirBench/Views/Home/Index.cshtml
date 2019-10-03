@@ -1,5 +1,6 @@
 ﻿@model IList<AirBench.Models.Bench>
 
+
 @if (Request.IsAuthenticated)
 {
     <h2>Welcome to AirBench @ViewBag.Name</h2>
@@ -8,7 +9,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div id="map" class="map"></div>
 
 <table>
     <tr>
@@ -18,7 +19,7 @@
         <th>Poster</th>
         <th></th>
     </tr>
-    
+
     <tbody>
         @foreach (var bench in Model)
         {
@@ -36,3 +37,15 @@
 </table>
 
 @Html.ActionLink("Add a Bench", "Create", "Bench", null, new { @class = "btn btn-info" })
+<script src="~/scripts/index.js"></script>
+
+@section scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.0.1/css/ol.css" type="text/css">
+    <style>
+        .map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.0.1/build/ol.js"></script>
+}

@@ -1,0 +1,25 @@
+{
+  "name": "airbench",
+  "version": "1.0.0",
+  "description": "- Visual Studio 2015\r     - MVC\r   - Insomnia??\r   - MSSMS\r   - Entity Framework\r   - Bootstrap\r ### Pages\r #### Nav-Bar\r   - Contains a link to a login page\r   - Contains a link to a signup page\r   - Hi, UserName\r   - Logout when Logged in\r   - My Benches (Benches user added)\r   - My Reviews??? (Reviews user has posted)\r #### Home Page - Home Controller / Index View (Mix of MVC and Json (For the Map))\r   - No Autorization needed to view\r   - Show overview of Map with all benches (using a Map API most likely // each benchmark is clickable)\r   - Sidebar\r     - Allow user to filter criteria (Min Seat - Should be 1 if being practical // Max Seat)\r     - List benches in the area that fit criteria\r       - Each bench is given their own div, displays a picture with their rating and description\r       - Loads all benches from bench table\r    - Add bench to map (Autorization required)\r #### Sign-up Page -- Account Controller (MVC)\r   - User signs up with their Username and Password\r   - Save to database\r   - Redirect to Log-in Page\r #### Log-in Page -- Account Controller (MVC)\r   - User logins with their Username and Password\r   - Search criteria to database\r   - Redirect to Home Page\r #### Add Bench Page -- Bench Controller / Create View\r   - Authorization Required\r   - Click on map to add bench on that specific location\r   - Add Form\r     - Description\r     - Number of Seats\r     - Lat / Long will already be saved depending on where user clicked\r     - Add image (Url Most likely)\r   - Add/Cancel\r   - Adds to bench table if successful \r #### Bench Details Page -- Bench Controller / Index??? /// Edit(or Details) View - GET \r   - No Authorization Required\r   - Redirected when user clicks on benchmark in home page or clicks on bench in Side Bar\r   - Loads specific bench from bench database\r     - Keep track of Id in the view!!\r   - Display image at the top\r   - Display Rating, Description, # of Seats, Latitude and Logitude of bench in list format\r   - Display all reviews\r   - Load from review table where review BenchId matches Id of bench\r     - Probably a bridge table\r   - Add review button (Must be signed in)\r   - #### Add Review  -- Review Controller / Create View\r     - Not a seperate page, but only viewable when user is signed in and presses add review\r     - User presses number of stars out of 5 to determine rating\r     - Textbox for review\r     - Submit / Cancel\r     - Add to review table and probably review - bench bridge table",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Msalam96/AirBench.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Msalam96/AirBench/issues"
+  },
+  "homepage": "https://github.com/Msalam96/AirBench#readme",
+  "dependencies": {
+    "ol": "^6.0.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  }
+}

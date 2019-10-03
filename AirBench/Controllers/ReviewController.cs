@@ -2,14 +2,11 @@
 using AirBench.FormModels;
 using AirBench.Models;
 using AirBench.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AirBench.Controllers
 {
+    [Authorize]
     public class ReviewController : Controller
     {
         private Context context;
@@ -25,15 +22,13 @@ namespace AirBench.Controllers
             return View();
         }
 
-        [Authorize]
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             CreateReview review = new CreateReview();
             return View(review);
         }
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateReview review, int id)

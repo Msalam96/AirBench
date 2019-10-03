@@ -30,7 +30,9 @@ namespace AirBench.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User(0, viewModel.UserName, viewModel.Password);
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(viewModel.Password, 12);
+
+                User user = new User(0, viewModel.UserName, hashedPassword);
                 var repository = new UserRepository(context);
                 repository.Insert(user);
 
@@ -56,7 +58,7 @@ namespace AirBench.Controllers
                 var repository = new UserRepository(context);
                 User user = repository.GetLoggedInUser(viewModel.UserName);
 
-                if(user == null || user.HashedPassword != viewModel.Password)
+                if(user == null || !BCrypt.Net.BCrypt.Verify(viewModel.Password, user.HashedPassword))
                 {
                     ModelState.AddModelError("", "Login Failed.");
                 }
