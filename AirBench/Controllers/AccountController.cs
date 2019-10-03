@@ -32,11 +32,11 @@ namespace AirBench.Controllers
             {
                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword(viewModel.Password, 12);
 
-                User user = new User(0, viewModel.UserName, hashedPassword);
+                User user = new User(0, viewModel.Email, viewModel.FirstName, viewModel.LastName, hashedPassword);
                 var repository = new UserRepository(context);
                 repository.Insert(user);
 
-                FormsAuthentication.SetAuthCookie(viewModel.UserName, false);
+                FormsAuthentication.SetAuthCookie(viewModel.Email, false);
                 return RedirectToAction("Index", "Home");
             }
             return View(viewModel);
@@ -56,17 +56,18 @@ namespace AirBench.Controllers
             if(ModelState.IsValidField("UserName") && ModelState.IsValidField("Password"))
             {
                 var repository = new UserRepository(context);
-                User user = repository.GetLoggedInUser(viewModel.UserName);
+                User user = repository.GetLoggedInUser(viewModel.Email);
 
                 if(user == null || !BCrypt.Net.BCrypt.Verify(viewModel.Password, user.HashedPassword))
                 {
                     ModelState.AddModelError("", "Those credentials do not exist for this application.");
                 }
             }
+        
 
             if (ModelState.IsValid)
             {
-                FormsAuthentication.SetAuthCookie(viewModel.UserName, false);
+                FormsAuthentication.SetAuthCookie(viewModel.Email, false);
                 return RedirectToAction("Index", "Home");
             }
             return View(viewModel);

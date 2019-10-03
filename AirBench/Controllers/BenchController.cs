@@ -25,9 +25,14 @@ namespace AirBench.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(decimal? lat, decimal? lon)
         {
-            CreateBench bench = new CreateBench();
+            var bench = new CreateBench();
+            if(lat != null)
+            {
+                bench.Latitude = lat.Value;
+                bench.Longitude = lon.Value;
+            }
             return View(bench);
         }
 

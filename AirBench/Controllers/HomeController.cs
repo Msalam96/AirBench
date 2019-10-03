@@ -24,7 +24,7 @@ namespace AirBench.Controllers
                 User currentUser = new UserRepository(context).GetLoggedInUser(User.Identity.Name);
                 if(currentUser != null)
                 {
-                    ViewBag.Name = currentUser.UserName;
+                    ViewBag.Name = currentUser.Email;
                 }
             }
             var repository = new BenchRepository(context);

@@ -46,10 +46,21 @@
 
     map.addLayer(markerVectorLayer);
 
+    let latitude;
+    let longitude;
+
     map.on('singleclick', async function (event) {
         console.log(event.coordinate);
-        console.log(ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326'));
+        event.coordinate = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326')
+        latitude = event.coordinate[0];
+        longitude = event.coordinate[1];
+        window.location.href = "/Bench/Create?Lat=" + latitude + "&Lon=" + longitude;
     });
+
+    async function print(){
+        console.log(latitude);
+        console.log(longitude);
+    }
 
    
 })();
