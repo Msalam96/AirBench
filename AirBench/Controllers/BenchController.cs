@@ -37,16 +37,19 @@ namespace AirBench.Controllers
         public ActionResult Create(CreateBench bench)
         {
             BenchRepository benchRepository = new BenchRepository(context);
-  
-            Bench newBench = new Bench(0, bench.Rating, bench.Description,
+            if (ModelState.IsValidField("Description"))
+            {
+                Bench newBench = new Bench(0, bench.Rating, bench.Description,
                 bench.Seats, bench.Latitude, bench.Longitude);
 
-            User user = new UserRepository(context).GetLoggedInUser(User.Identity.Name);
-            newBench.Poster = user;
-            newBench.PosterId = user.Id;
+                User user = new UserRepository(context).GetLoggedInUser(User.Identity.Name);
+                newBench.Poster = user;
+                newBench.PosterId = user.Id;
 
-            benchRepository.Insert(newBench);
-            return RedirectToAction("Index", "Home");
+                benchRepository.Insert(newBench);
+                return RedirectToAction("Index", "Home");
+            }
+            return View(bench);
         }
     }
 }

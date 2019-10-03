@@ -10,7 +10,7 @@ namespace AirBench.Data
             User user = new User(0, "Msalam", "1234");
             context.Users.Add(user);
 
-            Bench bench = new Bench(0, (decimal)4.50, "Nice bench", 3, (decimal)3.0, (decimal)3.0);
+            Bench bench = new Bench(0, (decimal)4.50, "Nice bench", 3, (decimal)-74.00628431415556, (decimal)40.71378653467582);
             bench.PosterId = user.Id;
             bench.Poster = user;
             context.Benches.Add(bench);

@@ -33,21 +33,25 @@ namespace AirBench.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateReview review, int id)
         {
-            var reviewRepository = new ReviewRepository(context);
-            var benchRepository = new BenchRepository(context);
+            if (ModelState.IsValidField("Description"))
+            {
+                var reviewRepository = new ReviewRepository(context);
+                var benchRepository = new BenchRepository(context);
 
-            Review newReview = new Review(0, review.Rating, review.Decription);
+                Review newReview = new Review(0, review.Rating, review.Decription);
 
-            Bench bench = benchRepository.GetBenchById(id);
-            newReview.Bench = bench;
-            newReview.BenchId = id;
+                Bench bench = benchRepository.GetBenchById(id);
+                newReview.Bench = bench;
+                newReview.BenchId = id;
 
-            User user = new UserRepository(context).GetLoggedInUser(User.Identity.Name);
-            newReview.Poster = user;
-            newReview.PosterId = user.Id;
+                User user = new UserRepository(context).GetLoggedInUser(User.Identity.Name);
+                newReview.Poster = user;
+                newReview.PosterId = user.Id;
 
-            reviewRepository.Insert(newReview);
-            return RedirectToRoute("Default", new { controller = "Bench", action = "Index", id = id });
+                reviewRepository.Insert(newReview);
+                return RedirectToRoute("Default", new { controller = "Bench", action = "Index", id = id });
+            }
+            return View(review);
         }
     }
 }

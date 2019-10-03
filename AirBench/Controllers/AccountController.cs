@@ -60,7 +60,7 @@ namespace AirBench.Controllers
 
                 if(user == null || !BCrypt.Net.BCrypt.Verify(viewModel.Password, user.HashedPassword))
                 {
-                    ModelState.AddModelError("", "Login Failed.");
+                    ModelState.AddModelError("", "Those credentials do not exist for this application.");
                 }
             }
 

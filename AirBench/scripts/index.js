@@ -1,4 +1,15 @@
 ﻿(async () => {
+    const baseUrl = "http://localhost:52346/api/map";
+
+    async function getBenches() {
+        return await fetch(baseUrl);
+    };
+
+    const response = await getBenches();
+    const benchInfo = await response.json();
+   
+    console.log(benchInfo);
+
     const map = new ol.Map({
         target: 'map',
         layers: [
@@ -12,14 +23,21 @@
         })
     });
 
-    const marker = new ol.Feature({
-        geometry: new ol.geom.Point(
-            ol.proj.fromLonLat([-74.006, 40.7127])
-        )
-    });
+    const markers = [];
+
+    async function setMarker(benchInfo){
+        const marker = new ol.Feature({
+            geometry: new ol.geom.Point(
+                ol.proj.fromLonLat([benchInfo.Latitude, benchInfo.Longitude])
+                )
+        });
+        markers.push(marker);
+    }
+
+    benchInfo.forEach(setMarker);
 
     const vectorSource = new ol.source.Vector({
-        features: [marker]
+        features: markers
     });
 
     const markerVectorLayer = new ol.layer.Vector({
@@ -31,6 +49,8 @@
     map.on('singleclick', async function (event) {
         console.log(event.coordinate);
         console.log(ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326'));
-    })
+    });
+
+   
 })();
 
