@@ -1,10 +1,8 @@
 ﻿using AirBench.Data;
 using AirBench.Models;
 using AirBench.Repositories;
-using System;
+using AirBench.Security;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AirBench.Controllers
@@ -22,9 +20,17 @@ namespace AirBench.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var repository = new UserRepository(context);
-            IList<User> users = repository.GetUsers();
-            return View(users);
+            if (Request.IsAuthenticated)
+            {
+                User currentUser = new UserRepository(context).GetLoggedInUser(User.Identity.Name);
+                if(currentUser != null)
+                {
+                    ViewBag.Name = currentUser.UserName;
+                }
+            }
+            var repository = new BenchRepository(context);
+            IList<Bench> benches = repository.GetBenches();
+            return View(benches);
         }
     }
 }
