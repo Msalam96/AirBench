@@ -2,15 +2,10 @@
 using AirBench.FormModels;
 using AirBench.Models;
 using AirBench.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AirBench.Controllers
 {
-    [Authorize]
     public class BenchController : Controller
     {
         // GET: Bench
@@ -21,31 +16,45 @@ namespace AirBench.Controllers
             context = new Context();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Create()
-        {
-            CreateBench bench = new CreateBench();
+            var repository = new BenchRepository(context);
+            Bench bench = repository.GetBenchById(id);
             return View(bench);
         }
 
+        [Authorize]
+        [HttpGet]
+        public ActionResult Create(decimal? lat, decimal? lon)
+        {
+            var bench = new CreateBench();
+            if(lat != null)
+            {
+                bench.Latitude = lat.Value;
+                bench.Longitude = lon.Value;
+            }
+            return View(bench);
+        }
+
+        [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CreateBench bench)
         {
             BenchRepository benchRepository = new BenchRepository(context);
-            UserRepository userRepository = new UserRepository(context);
-  
-            Bench newBench = new Bench(0, bench.Rating, bench.Description,
+            if (ModelState.IsValidField("Description"))
+            {
+                Bench newBench = new Bench(0, bench.Rating, bench.Description,
                 bench.Seats, bench.Latitude, bench.Longitude);
-            User user = userRepository.GetLoggedInUser(User.Identity.Name);
-            newBench.Poster = user;
-            newBench.PosterId = user.Id;
-            benchRepository.Insert(newBench);
-            return RedirectToAction("Index", "Home");
+
+                User user = new UserRepository(context).GetLoggedInUser(User.Identity.Name);
+                newBench.Poster = user;
+                newBench.PosterId = user.Id;
+
+                benchRepository.Insert(newBench);
+                return RedirectToAction("Index", "Home");
+            }
+            return View(bench);
         }
     }
 }

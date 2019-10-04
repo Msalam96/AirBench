@@ -1,10 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AirBench.Models
 {
     public class Review
     {
+        public Review() { }
+
+        public Review(int id, decimal rating, string description)
+        {
+            Id = id;
+            Rating = rating;
+            Description = description;
+        }
+
         public int Id { get; set; }
         public decimal Rating { get; set; }
         [Required, MaxLength(255)]
