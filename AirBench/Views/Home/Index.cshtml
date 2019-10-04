@@ -27,7 +27,7 @@
                 <td>@bench.Id</td>
                 <td>@bench.Rating</td>
                 <td>@bench.Description</td>
-                <td>@bench.Poster.Email</td>
+                <td>@bench.Poster.FirstName[0]. @bench.Poster.LastName</td>
                 <td>
                     @Html.ActionLink("Details", "Index", "Bench", new { id = bench.Id }, null)
                 </td>

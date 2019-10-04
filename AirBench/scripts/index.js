@@ -31,6 +31,8 @@
                 ol.proj.fromLonLat([benchInfo.Latitude, benchInfo.Longitude])
                 )
         });
+        console.log(benchInfo.Id);
+        marker.setId(benchInfo.Id)
         markers.push(marker);
     }
 
@@ -48,20 +50,20 @@
 
     let latitude;
     let longitude;
-
     map.on('singleclick', async function (event) {
-        console.log(event.coordinate);
-        event.coordinate = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326')
-        latitude = event.coordinate[0];
-        longitude = event.coordinate[1];
-        window.location.href = "/Bench/Create?Lat=" + latitude + "&Lon=" + longitude;
+        let flag = true;
+        map.forEachFeatureAtPixel(event.pixel, function (feature,layer){
+            console.log(feature.getId());
+            window.location.href = "/Bench/Index/" + feature.getId();
+            flag = false;
+        })
+        if (flag){
+            console.log(event.coordinate);
+            event.coordinate = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326')
+            latitude = event.coordinate[0];
+            longitude = event.coordinate[1];
+            window.location.href = "/Bench/Create?Lat=" + latitude + "&Lon=" + longitude;
+        }
     });
-
-    async function print(){
-        console.log(latitude);
-        console.log(longitude);
-    }
-
-   
 })();
 

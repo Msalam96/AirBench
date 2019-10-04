@@ -26,7 +26,7 @@
             <td>@Model.Seats</td>
             <td>@Model.Latitude</td>
             <td>@Model.Longitude</td>
-            <td>@Model.Poster.UserName</td>
+            <td>@Model.Poster.Email</td>
         </tr>  
     </tbody>
 </table>
@@ -37,6 +37,7 @@
     <tr>
         <th>Rating</th>
         <th>Description</th>
+        <th>Posted</th>
         <th>Poster</th>
     </tr>
 
@@ -46,7 +47,8 @@
         <tr>
             <td>@review.Rating</td>
             <td>@review.Description</td>
-            <td>@review.Poster.UserName</td>
+            <td>@review.postDate</td>
+            <td>@review.Poster.FirstName[0]. @review.Poster.LastName</td>
         </tr>
     }
     </tbody>
