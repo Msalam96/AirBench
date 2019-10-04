@@ -11,11 +11,23 @@
 
 <div id="map" class="map"></div>
 
-<table>
+<div id="filter">
+    <div>
+        <label>Minimum No. Seats</label>
+        <input id="min" type="number" value="1" />
+    </div>
+    <div>
+        <label>Maximum No. Seats</label>
+        <input id="max" type="number" value="1"/>
+    </div>
+</div>
+
+<table id="benches">
     <tr>
         <th>Bench No.</th>
         <th>Rating</th>
         <th>Description</th>
+        <th>Seats</th>
         <th>Poster</th>
         <th></th>
     </tr>
@@ -23,11 +35,22 @@
     <tbody>
         @foreach (var bench in Model)
         {
-            <tr>
+            <tr data-seats=@bench.Seats>
                 <td>@bench.Id</td>
-                <td>@bench.Rating</td>
-                <td>@bench.Description</td>
-                <td>@bench.Poster.Email</td>
+                @if(@bench.Reviews.Count() == 0)
+                {
+                    <td>No Rating</td>
+                }
+                else
+                {
+                    <td>@((float)System.Math.Round(bench.Rating, 1))</td>
+                }
+                @if (bench.Description.Split(' ').Length <= 10)
+                {
+                    <td>@bench.Description</td>
+                }
+                <td>@bench.Seats</td>
+                <td>@bench.Poster.FirstName @bench.Poster.LastName[0]</td>
                 <td>
                     @Html.ActionLink("Details", "Index", "Bench", new { id = bench.Id }, null)
                 </td>

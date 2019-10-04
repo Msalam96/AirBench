@@ -6,7 +6,6 @@
 
 <h2>Create</h2>
 
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -58,7 +57,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" id="saveButton" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -68,6 +67,22 @@
     @Html.ActionLink("Back to List", "Index", "Home")
 </div>
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@section scripts {
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#saveButton').click(function () {
+                $(this).prop("disabled", true);
+                if (!$('form').valid())
+                {
+                    $(this).prop("disabled",false);
+                    return false;
+                }
+                $('form').submit();
+            });
+        });
+    </script>
+}
