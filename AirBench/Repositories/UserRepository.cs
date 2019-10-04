@@ -19,9 +19,9 @@ namespace AirBench.Repositories
             return _context.Users.ToList();
         }
 
-        public User GetLoggedInUser(string userName)
+        public User GetLoggedInUser(string email)
         {
-            return _context.Users.SingleOrDefault(u => u.UserName == userName);
+            return _context.Users.SingleOrDefault(u => u.Email == email);
         }
 
         public void Insert(User user)

@@ -2,14 +2,11 @@
 using AirBench.FormModels;
 using AirBench.Models;
 using AirBench.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AirBench.Controllers
 {
+    [Authorize]
     public class ReviewController : Controller
     {
         private Context context;
@@ -25,34 +22,36 @@ namespace AirBench.Controllers
             return View();
         }
 
-        [Authorize]
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             CreateReview review = new CreateReview();
             return View(review);
         }
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateReview review, int id)
         {
-            var reviewRepository = new ReviewRepository(context);
-            var benchRepository = new BenchRepository(context);
+            if (ModelState.IsValidField("Description"))
+            {
+                var reviewRepository = new ReviewRepository(context);
+                var benchRepository = new BenchRepository(context);
 
-            Review newReview = new Review(0, review.Rating, review.Decription);
+                Review newReview = new Review(0, review.Rating, review.Decription);
 
-            Bench bench = benchRepository.GetBenchById(id);
-            newReview.Bench = bench;
-            newReview.BenchId = id;
+                Bench bench = benchRepository.GetBenchById(id);
+                newReview.Bench = bench;
+                newReview.BenchId = id;
 
-            User user = new UserRepository(context).GetLoggedInUser(User.Identity.Name);
-            newReview.Poster = user;
-            newReview.PosterId = user.Id;
+                User user = new UserRepository(context).GetLoggedInUser(User.Identity.Name);
+                newReview.Poster = user;
+                newReview.PosterId = user.Id;
 
-            reviewRepository.Insert(newReview);
-            return RedirectToRoute("Default", new { controller = "Bench", action = "Index", id = id });
+                reviewRepository.Insert(newReview);
+                return RedirectToRoute("Default", new { controller = "Bench", action = "Index", id = id });
+            }
+            return View(review);
         }
     }
 }

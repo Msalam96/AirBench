@@ -18,6 +18,12 @@ namespace AirBench.Data
                 .HasRequired(r => r.Bench)
                 .WithMany(b => b.Reviews)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Bench>()
+                .Property(p => p.Latitude).HasPrecision(23, 20);
+
+            modelBuilder.Entity<Bench>()
+                .Property(p => p.Longitude).HasPrecision(23, 20);
         }
     }
 
