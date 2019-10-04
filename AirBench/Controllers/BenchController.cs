@@ -2,10 +2,6 @@
 using AirBench.FormModels;
 using AirBench.Models;
 using AirBench.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AirBench.Controllers
@@ -29,9 +25,14 @@ namespace AirBench.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(decimal? lat, decimal? lon)
         {
-            CreateBench bench = new CreateBench();
+            var bench = new CreateBench();
+            if(lat != null)
+            {
+                bench.Latitude = lat.Value;
+                bench.Longitude = lon.Value;
+            }
             return View(bench);
         }
 
@@ -41,15 +42,19 @@ namespace AirBench.Controllers
         public ActionResult Create(CreateBench bench)
         {
             BenchRepository benchRepository = new BenchRepository(context);
-            UserRepository userRepository = new UserRepository(context);
-  
-            Bench newBench = new Bench(0, bench.Rating, bench.Description,
+            if (ModelState.IsValidField("Description"))
+            {
+                Bench newBench = new Bench(0, bench.Rating, bench.Description,
                 bench.Seats, bench.Latitude, bench.Longitude);
-            User user = userRepository.GetLoggedInUser(User.Identity.Name);
-            newBench.Poster = user;
-            newBench.PosterId = user.Id;
-            benchRepository.Insert(newBench);
-            return RedirectToAction("Index", "Home");
+
+                User user = new UserRepository(context).GetLoggedInUser(User.Identity.Name);
+                newBench.Poster = user;
+                newBench.PosterId = user.Id;
+
+                benchRepository.Insert(newBench);
+                return RedirectToAction("Index", "Home");
+            }
+            return View(bench);
         }
     }
 }
