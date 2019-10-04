@@ -41,6 +41,9 @@ namespace AirBench.Controllers
                 Review newReview = new Review(0, review.Rating, review.Decription);
 
                 Bench bench = benchRepository.GetBenchById(id);
+                bench.Reviews.Add(newReview);
+                bench.CalculateRating(bench.Reviews);
+
                 newReview.Bench = bench;
                 newReview.BenchId = id;
 

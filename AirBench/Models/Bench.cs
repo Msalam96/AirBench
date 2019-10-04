@@ -12,11 +12,10 @@ namespace AirBench.Models
             Reviews = new List<Review>();
         }
 
-        public Bench(int id, decimal rating, string description, 
+        public Bench(int id, string description, 
             int seats, decimal latitude, decimal longitude) : this()
         {
             Id = id;
-            Rating = rating;
             Description = description;
             Seats = seats;
             Latitude = latitude;
@@ -24,7 +23,7 @@ namespace AirBench.Models
         }
 
         public int Id { get; set; }
-        public decimal Rating { get; set; }
+        public decimal? Rating { get; set; }
         [Required, MaxLength(255)]
         public string Description { get; set; }
         public int Seats { get; set; }
@@ -36,6 +35,17 @@ namespace AirBench.Models
 
         public List<Review> Reviews { get; set; }
 
+        public void CalculateRating(List<Review> reviews)
+        {
+            decimal total = 0;
+            for(int i = 0; i < reviews.Count; i++)
+            {
+                total += reviews[i].Rating;
+            }
+
+            Rating = total / reviews.Count;
+        }
+      
         public string ShortDescription
         {
             get
@@ -65,6 +75,5 @@ namespace AirBench.Models
 
                 return shortDescription;
             }
-        }
     }
 }
