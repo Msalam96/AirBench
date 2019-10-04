@@ -67,16 +67,15 @@
     });
 
     let toggleButton = function () {
-        const form = document.querySelector('#CreateBenchForm');
-        const rating = document.querySelector('#Rating');
-        const description = document.querySelector('#Description');
-        const latitude = document.querySelector('#Latitude');
-        const longitude = document.querySelector('#Longitude');
-        const seat = document.querySelector('#Seats');
-        const submitButton = document.querySelector('#saveButton');
+        const form = document.getElementById('CreateBenchForm');
+        const description = document.getElementById('Description');
+        const latitude = document.getElementById('Latitude');
+        const longitude = document.getElementById('Longitude');
+        const seat = document.getElementById('Seats');
+        const submitButton = document.getElementById('createButton');
         form.addEventListener('keyup', () => {
-            if (rating.value === '' ||
-                description.value === '' || latitude.value === '' || longitude.value === '' || seat === '')
+            if (description.value === '' || latitude.value === '' 
+            || longitude.value === '' || seat === '')
             {
                 submitButton.disabled = true;
             }
@@ -97,11 +96,7 @@
         console.log(rows)
         for(let i = 1; i < rows.length; i++){
             let seats = parseInt(rows[i].getAttribute('data-seats'), 10);
-
-            if(isNaN(min && isNaN(max))){
-                rows[i].style.display = "";
-            } 
-            else if (seats >= min && seats <= max) {
+            if (seats >= min && seats <= max) {
                 rows[i].style.display = "";
             } else if (seats < min || seats > max) {
                 rows[i].style.display = "none";
@@ -110,12 +105,8 @@
             }
         }
     }
-
-    document.getElementById('filter').addEventListener('keyup', function (){
-        filterBenches()
-    });
-
-    // document.getElementById('min').addEventListener('keyup', filterBenches);
-    // document.getElementById('max').addEventListener('keyup', filterBenches);
+    
+    document.getElementById('min').addEventListener('keyup', filterBenches);
+    document.getElementById('max').addEventListener('keyup', filterBenches);
 })();
 

@@ -44,7 +44,7 @@ namespace AirBench.Controllers
             BenchRepository benchRepository = new BenchRepository(context);
             if (ModelState.IsValidField("Description"))
             {
-                Bench newBench = new Bench(0, bench.Rating, bench.Description,
+                Bench newBench = new Bench(0, bench.Description,
                 bench.Seats, bench.Latitude, bench.Longitude);
 
                 User user = new UserRepository(context).GetLoggedInUser(User.Identity.Name);
