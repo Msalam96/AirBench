@@ -1,0 +1,25 @@
+﻿@model IList<AirBench.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <tr>
+        <th>UserName</th>
+        <th>Password</th>
+    </tr>
+    
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.HashedPassword</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
