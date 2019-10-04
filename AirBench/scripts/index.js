@@ -66,28 +66,6 @@
         }
     });
 
-    let toggleButton = function () {
-        const form = document.getElementById('CreateBenchForm');
-        const description = document.getElementById('Description');
-        const latitude = document.getElementById('Latitude');
-        const longitude = document.getElementById('Longitude');
-        const seat = document.getElementById('Seats');
-        const submitButton = document.getElementById('createButton');
-        form.addEventListener('keyup', () => {
-            if (description.value === '' || latitude.value === '' 
-            || longitude.value === '' || seat === '')
-            {
-                submitButton.disabled = true;
-            }
-            else
-            {
-                submitButton.disabled = false;
-            }
-        });
-     };
-     
-     toggleButton();
-
     function filterBenches(){
         let min = parseInt(document.getElementById('min').value, 10);
         let max = parseInt(document.getElementById('max').value, 10);

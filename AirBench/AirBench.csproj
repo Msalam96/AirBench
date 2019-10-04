@@ -181,6 +181,7 @@
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="scripts\button.js" />
     <Content Include="scripts\index.js" />
     <None Include="scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="scripts\jquery-3.4.1.js" />
