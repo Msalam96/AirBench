@@ -14,44 +14,56 @@
         <th>Seats</th>
         <th>Latitude</th>
         <th>Longitude</th>
-        <th>Poster</th>
         <th></th>
     </tr>
 
     <tbody>
         <tr>
             <td>@Model.Id</td>
-            <td>@Model.Rating</td>
+            @if(Model.Reviews.Count == 0)
+            {
+                <td>No Ratings</td>
+            }
+            else
+            {
+                <td>@Model.Rating</td>
+            }
             <td>@Model.Description</td>
             <td>@Model.Seats</td>
             <td>@Model.Latitude</td>
             <td>@Model.Longitude</td>
-            <td>@Model.Poster.Email</td>
         </tr>  
     </tbody>
 </table>
 
 <h3>Reviews</h3>
 
-<table>
-    <tr>
-        <th>Rating</th>
-        <th>Description</th>
-        <th>Posted</th>
-        <th>Poster</th>
-    </tr>
-
-    <tbody>
-    @foreach (var review in Model.Reviews)
-    {
+@if(Model.Reviews.Count == 0)
+{
+    <p>No Reviews Yet</p>
+}
+else
+{
+    <table>
         <tr>
-            <td>@review.Rating</td>
-            <td>@review.Description</td>
-            <td>@review.postDate</td>
-            <td>@review.Poster.FirstName[0]. @review.Poster.LastName</td>
+            <th>Rating</th>
+            <th>Description</th>
+            <th>Posted</th>
+            <th>Poster</th>
         </tr>
-    }
-    </tbody>
-</table>
+
+        <tbody>
+            @foreach (var review in Model.Reviews)
+            {
+                <tr>
+                    <td>@review.Rating</td>
+                    <td>@review.Description</td>
+                    <td>@review.postDate</td>
+                    <td>@review.Poster.FirstName @review.Poster.LastName[0]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @Html.ActionLink("Leave a review", "Create", "Review", new { id = Model.Id }, new { @class = "btn btn-info" })
