@@ -30,14 +30,23 @@ namespace AirBench.Controllers
         {
             if (ModelState.IsValid)
             {
-                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(viewModel.Password, 12);
-
-                User user = new User(0, viewModel.Email, viewModel.FirstName, viewModel.LastName, hashedPassword);
                 var repository = new UserRepository(context);
-                repository.Insert(user);
+                User exists = repository.GetLoggedInUser(viewModel.Email);
 
-                FormsAuthentication.SetAuthCookie(viewModel.Email, false);
-                return RedirectToAction("Index", "Home");
+                if(exists != null)
+                {
+                    ModelState.AddModelError("", "Email already exists");
+                }
+                else
+                {
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(viewModel.Password, 12);
+
+                    User user = new User(0, viewModel.Email, viewModel.FirstName, viewModel.LastName, hashedPassword);
+                    repository.Insert(user);
+
+                    FormsAuthentication.SetAuthCookie(viewModel.Email, false);
+                    return RedirectToAction("Index", "Home");
+                }
             }
             return View(viewModel);
         }

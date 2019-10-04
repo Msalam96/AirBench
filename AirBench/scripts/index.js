@@ -66,45 +66,28 @@
         }
     });
 
-    // let createFilteredTable = function () {
-    //     const myTableDiv = document.getElementById("benches");
-    //     //Table
-    //     const table = document.createElement('TABLE');
-    //     table.id = 'table';
-    //     //THead
-    //     const tableHead = document.createElement('THEAD');
-    //     tableHead.className = 'thead-dark';
-    //     table.appendChild(tableHead);
-    //     //THead > TR
-    //     const tableHeadRow = document.createElement('TR');
-    //     tableHead.appendChild(tableHeadRow);
-    //     //THead > TR > TH
-    //     const tableHeadRowElement1 = document.createElement('TH');
-    //     tableHeadRowElement1.innerHTML = 'Bench No';
-    //     tableHeadRow.appendChild(tableHeadRowElement1);
-    //     const tableHeadRowElement2 = document.createElement('TH');
-    //     tableHeadRowElement2.innerHTML = 'Rating';
-    //     tableHeadRow.appendChild(tableHeadRowElement2);
-    //     const tableHeadRowElement3 = document.createElement('TH');
-    //     tableHeadRowElement3.innerHTML = 'Description';
-    //     tableHeadRow.appendChild(tableHeadRowElement3);
-    //     const tableHeadRowElement4 = document.createElement('TH');
-    //     tableHeadRowElement4.innerHTML = 'Seats';
-    //     tableHeadRow4.appendChild(tableHeadRowElement4);
-    //     //TBody
-    //     var tableBody = document.createElement('TBODY');
-    //     table.appendChild(tableBody);
-    //     for (var i = 0; i < 3; i++) {
-    //         var tr = document.createElement('TR');
-    //         tableBody.appendChild(tr);
-    //         for (var j = 0; j < 4; j++) {
-    //             var td = document.createElement('TD');
-    //             td.appendChild(document.createTextNode("Cell " + i + "," + j));
-    //             tr.appendChild(td);
-    //         }
-    //     }
-    //     myTableDiv.appendChild(table);
-    // };
+    let toggleButton = function () {
+        const form = document.querySelector('#CreateBenchForm');
+        const rating = document.querySelector('#Rating');
+        const description = document.querySelector('#Description');
+        const latitude = document.querySelector('#Latitude');
+        const longitude = document.querySelector('#Longitude');
+        const seat = document.querySelector('#Seats');
+        const submitButton = document.querySelector('#saveButton');
+        form.addEventListener('keyup', () => {
+            if (rating.value === '' ||
+                description.value === '' || latitude.value === '' || longitude.value === '' || seat === '')
+            {
+                submitButton.disabled = true;
+            }
+            else
+            {
+                submitButton.disabled = false;
+            }
+        });
+     };
+     
+     toggleButton();
 
     function filterBenches(){
         let min = parseInt(document.getElementById('min').value, 10);
