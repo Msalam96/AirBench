@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace AirBench.Models
 {
@@ -43,5 +45,35 @@ namespace AirBench.Models
 
             Rating = total / reviews.Count;
         }
+      
+        public string ShortDescription
+        {
+            get
+            {
+                string description = Description;
+                string shortDescription = string.Empty;
+
+                // Make sure that we have a description...
+                if (!string.IsNullOrWhiteSpace(description))
+                {
+                    // Get a collection of the words in the description.
+                    var words = description
+                        .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    // If we have more than 10 words
+                    // then take the first 10 and add "..." to the end
+                    // otherwise just use the description as is. 
+                    if (words.Length > 10)
+                    {
+                        shortDescription = string.Join(" ", words.Take(10)) + "...";
+                    }
+                    else
+                    {
+                        shortDescription = description;
+                    }                    
+                }
+
+                return shortDescription;
+            }
     }
 }

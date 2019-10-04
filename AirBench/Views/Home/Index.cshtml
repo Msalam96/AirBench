@@ -45,10 +45,7 @@
                 {
                     <td>@((float)System.Math.Round(bench.Rating.Value, 1))</td>
                 }
-                @if (bench.Description.Split(' ').Length <= 10)
-                {
-                    <td>@bench.Description</td>
-                }
+                <td>@bench.ShortDescription</td>
                 <td>@bench.Seats</td>
                 <td>@bench.Poster.FirstName @bench.Poster.LastName[0]</td>
                 <td>
